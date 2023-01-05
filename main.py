@@ -1,5 +1,6 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support import expected_conditions as EC
 
 driver = webdriver.Chrome()
 
@@ -11,10 +12,9 @@ searchBar.send_keys('iphone')
 searchBar.submit()
 
 
-
-# remaining code
-
-
-
-
-driver.close()
+product_name = []
+product_asin = []
+product_price = []
+product_ratings = []
+product_ratings_num = []
+product_link = []
