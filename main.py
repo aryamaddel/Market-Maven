@@ -18,3 +18,10 @@ product_price = []
 product_ratings = []
 product_ratings_num = []
 product_link = []
+
+items = driver.find_elements(By.XPATH, '//div[@data-component-type="s-search-result"]')
+print(items)
+
+
+driver.implicitly_wait(5)
+driver.close()
