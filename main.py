@@ -12,6 +12,7 @@ driver.implicitly_wait(5)
 searchBar.send_keys('ps5')
 searchBar.submit()
 
+
 product_name = []
 product_asin = []
 product_price = []
