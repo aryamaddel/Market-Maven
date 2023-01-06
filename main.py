@@ -42,8 +42,6 @@ print(product_ratings)
 print(product_ratings_num)
 print(product_link)
 
-
-
 driver.implicitly_wait(5)
 driver.close()
 print("omg it worked")
