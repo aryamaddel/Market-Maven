@@ -29,12 +29,18 @@ items = WebDriverWait(driver, 10).until(
 )
 
 for item in items:
-    product_name.append(item.find_element(By.XPATH, './/span[@class="a-size-medium a-color-base a-text-normal"]').text)
+    product_name.append(item.find_element(
+        By.XPATH, './/span[@class="a-size-medium a-color-base a-text-normal"]'
+    ).text
+    )
     product_asin.append(item.get_attribute('data-asin'))
     product_price.append(item.find_element(By.XPATH, './/span[2]').text)
     product_ratings.append(item.find_element(By.XPATH, './/span[1]').text)
     product_ratings_num.append(item.find_element(By.XPATH, './/span[2]').text)
-    product_link.append(item.find_element(By.XPATH, './/a').get_attribute('href'))
+    product_link.append(item.find_element(
+        By.XPATH, './/a').get_attribute('href')
+    )
+
 
 # FIX THIS PART ⬆️⬆️⬆️
 
@@ -45,6 +51,7 @@ print(product_price)
 print(product_ratings)
 print(product_ratings_num)
 print(product_link)
+
 
 driver.implicitly_wait(5)
 driver.close()
