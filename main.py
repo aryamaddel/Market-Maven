@@ -22,6 +22,7 @@ product_link = []
 items = WebDriverWait(driver, 10).until(EC.presence_of_all_elements_located(
     (By.XPATH, '//div[@data-component-type="s-search-result"]')))
 
+
 for item in items:
     product_name.append(item.find_element(By.XPATH, './/span[@class="a-size-medium a-color-base a-text-normal"]').text)
     product_asin.append(item.get_attribute('data-asin'))
