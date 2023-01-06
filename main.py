@@ -46,3 +46,4 @@ print(product_link)
 
 driver.implicitly_wait(5)
 driver.close()
+print("omg it worked")
