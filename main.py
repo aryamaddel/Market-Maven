@@ -31,7 +31,6 @@ for item in items:
     product_ratings_num.append(item.find_element(By.XPATH, './/span[2]').text)
     product_link.append(item.find_element(By.XPATH, './/a').get_attribute('href'))
 
-              
 # FIX THIS PART ⬆️⬆️⬆️
 
 
