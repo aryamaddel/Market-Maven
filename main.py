@@ -34,16 +34,32 @@ for item in items:
     product_asin.append(item.get_attribute('data-asin'))
     product_price.append(item.find_element(
         By.XPATH, './/span[@class="a-price-whole"]').text)
-    product_ratings.append(item.find_element(
-        By.XPATH, './/span[@class="a-size-base"]').text)
-    product_ratings_num.append(item.find_element(
-        By.XPATH, './/a/span[@class="a-size-base s-underline-text"]').text)
+
+    # find ratings box
+    ratings_box = item.find_elements(By.XPATH, './/div[@class="a-row a-size-small"]/span')
+
+    # find ratings and ratings_num
+    if ratings_box != []:
+        ratings = ratings_box[0].get_attribute('aria-label')
+        ratings_num = ratings_box[1].get_attribute('aria-label')
+    else:
+        ratings, ratings_num = 0, 0
+    
+    product_ratings.append(ratings)
+    product_ratings_num.append(str(ratings_num))
+
     product_link.append(item.find_element(
         By.XPATH, './/a').get_attribute('href')
     )
 
 
-# FIX THIS PART ⬆️⬆️⬆️
+print(product_name)
+print(product_asin)
+print(product_price)
+print(product_ratings)
+print(product_ratings_num)
+print(product_link)
+
 
 driver.implicitly_wait(5)
 driver.close()
