@@ -34,9 +34,9 @@ for item in items:
     ).text
     )
     product_asin.append(item.get_attribute('data-asin'))
-    product_price.append(item.find_element(By.XPATH, './/span[2]').text)
-    product_ratings.append(item.find_element(By.XPATH, './/span[1]').text)
-    product_ratings_num.append(item.find_element(By.XPATH, './/span[2]').text)
+    product_price.append(item.find_element(By.XPATH, './/span[@class="a-price-whole"]').text)
+    product_ratings.append(item.find_element(By.XPATH, './/span/span[@class="a-size-base"]').text)
+    product_ratings_num.append(item.find_element(By.XPATH, './/a/span[@class="a-size-base s-underline-text"]').text)
     product_link.append(item.find_element(
         By.XPATH, './/a').get_attribute('href')
     )
