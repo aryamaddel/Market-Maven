@@ -9,7 +9,8 @@ driver.get('https://www.amazon.in')
 
 searchBar = driver.find_element(By.ID, 'twotabsearchtextbox')
 driver.implicitly_wait(5)
-searchBar.send_keys('ps5')
+item_to_be_searched = input("Enter product you want to search: ")
+searchBar.send_keys(item_to_be_searched)
 searchBar.submit()
 
 
@@ -52,7 +53,6 @@ for item in items:
     product_link.append(item.find_element(
         By.XPATH, './/a').get_attribute('href')
     )
-
 
 
 driver.implicitly_wait(5)
