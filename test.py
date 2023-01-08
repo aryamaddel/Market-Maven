@@ -9,6 +9,8 @@ driver.get('https://www.amazon.in')
 
 searchBar = driver.find_element(By.ID, 'twotabsearchtextbox')
 driver.implicitly_wait(5)
+
+
 item_to_be_searched = input("Enter product you want to search: ")
 searchBar.send_keys(item_to_be_searched)
 searchBar.submit()
@@ -34,7 +36,7 @@ for item in items:
         By.XPATH, './/span[@class="a-size-medium a-color-base a-text-normal"]').text)
     product_asin.append(item.get_attribute('data-asin'))
     product_price.append(item.find_element(
-        By.XPATH, './/span[@class="a-price-whole"]').text)
+        By.XPATH, './/span//span[@class="a-price-whole"]').text)
 
     # find ratings box
     ratings_box = item.find_elements(
@@ -54,6 +56,22 @@ for item in items:
         By.XPATH, './/a').get_attribute('href')
     )
 
+items_selected = []
+for itemNo, name in enumerate(product_name):
+    if item_to_be_searched.lower() in name.lower():
+        info = []
+        info.append(product_name[itemNo])
+        info.append(product_price[itemNo])
+        info.append(product_ratings[itemNo])
+        info.append(product_ratings_num[itemNo])
+        info.append(product_link[itemNo])
+        items_selected.append(info)
+
+print("Items found are: ")
+for item in items_selected:
+    for specs in item:
+        print(specs)
+    print("\n")
 
 driver.implicitly_wait(5)
 driver.close()
