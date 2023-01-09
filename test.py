@@ -23,6 +23,7 @@ product_ratings = []
 product_ratings_num = []
 product_link = []
 
+print("Finding all elements\n")
 items = WebDriverWait(driver, 10).until(
     EC.presence_of_all_elements_located(
         (
@@ -30,7 +31,9 @@ items = WebDriverWait(driver, 10).until(
         )
     )
 )
+print("Found all elements\n")
 
+print("Getting product details\n")
 for item in items:
     product_name.append(item.find_element(
         By.XPATH, './/span[@class="a-size-medium a-color-base a-text-normal"]').text)
@@ -55,7 +58,9 @@ for item in items:
     product_link.append(item.find_element(
         By.XPATH, './/a').get_attribute('href')
     )
+print("Got product details\n")
 
+print("searching for your product\n")
 items_selected = []
 for itemNo, name in enumerate(product_name):
     if item_to_be_searched.lower() in name.lower():
@@ -66,12 +71,9 @@ for itemNo, name in enumerate(product_name):
         info.append(product_ratings_num[itemNo])
         info.append(product_link[itemNo])
         items_selected.append(info)
+print("Found your products\n")
 
-print("Items found are: ")
-for item in items_selected:
-    for specs in item:
-        print(specs)
-    print("\n")
+
 
 driver.implicitly_wait(5)
 driver.close()
