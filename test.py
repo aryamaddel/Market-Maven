@@ -2,6 +2,8 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
+from os import system as sys
+from time import sleep
 
 driver = webdriver.Chrome()
 
@@ -10,7 +12,7 @@ driver.get('https://www.amazon.in')
 searchBar = driver.find_element(By.ID, 'twotabsearchtextbox')
 driver.implicitly_wait(5)
 
-
+sys('clear')
 item_to_be_searched = input("Enter product you want to search: ")
 searchBar.send_keys(item_to_be_searched)
 searchBar.submit()
@@ -23,6 +25,8 @@ product_ratings = []
 product_ratings_num = []
 product_link = []
 
+sleep(2)
+sys('clear')
 print("Finding all elements\n")
 items = WebDriverWait(driver, 10).until(
     EC.presence_of_all_elements_located(
@@ -31,8 +35,12 @@ items = WebDriverWait(driver, 10).until(
         )
     )
 )
+sleep(2)
+sys('clear')
 print("Found all elements\n")
 
+sleep(2)
+sys('clear')
 print("Getting product details\n")
 for item in items:
     product_name.append(item.find_element(
@@ -58,8 +66,12 @@ for item in items:
     product_link.append(item.find_element(
         By.XPATH, './/a').get_attribute('href')
     )
+sleep(2)
+sys('clear')
 print("Got product details\n")
 
+sleep(2)
+sys('clear')
 print("searching for your product\n")
 items_selected = []
 for itemNo, name in enumerate(product_name):
@@ -71,8 +83,9 @@ for itemNo, name in enumerate(product_name):
         info.append(product_ratings_num[itemNo])
         info.append(product_link[itemNo])
         items_selected.append(info)
+sleep(2)
+sys('clear')
 print("Found your products\n")
-
 
 
 driver.implicitly_wait(5)
