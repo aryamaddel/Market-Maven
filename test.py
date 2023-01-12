@@ -84,7 +84,8 @@ for itemNo, name in enumerate(product_name):
 sys('clear')
 print("Found your products\n")
 
-for item in items_selected:
+for prod_no, item in enumerate(items_selected):
+    print(f"Number: {prod_no+1}")
     print(f"Name: {item[0]}")
     print(f"Price: {item[1]}")
     print(f"Ratings: {item[2]}")
