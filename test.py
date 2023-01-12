@@ -45,11 +45,9 @@ for item in items:
     product_price.append(item.find_element(
         By.XPATH, './/span//span[@class="a-price-whole"]').text)
 
-    # find ratings box
     ratings_box = item.find_elements(
         By.XPATH, './/div[@class="a-row a-size-small"]/span')
 
-    # find ratings and ratings_num
     if ratings_box != []:
         ratings = ratings_box[0].get_attribute('aria-label')
         ratings_num = ratings_box[1].get_attribute('aria-label')
