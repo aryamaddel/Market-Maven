@@ -48,7 +48,7 @@ for item in items:
 
     print("Getting product price")
     product_price.append(item.find_element(
-        By.XPATH, './/a//span//span//span[@class="a-price-whole"]').text)
+        By.XPATH, './/span[@class="a-price-whole"]').text)
 
     print("Getting product ratings")
     ratings_box = item.find_elements(
@@ -64,7 +64,7 @@ for item in items:
     product_ratings_num.append(str(ratings_num))
 
     product_link.append(item.find_element(
-        By.XPATH, './/a').get_attribute('href')
+        By.XPATH, './/h2/a').get_attribute('href')
     )
 sys('clear')
 print("Got product details\n")
