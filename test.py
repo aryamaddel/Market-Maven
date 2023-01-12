@@ -93,5 +93,16 @@ for prod_no, item in enumerate(items_selected):
     print(f"Link: {item[4]}")
     print("\n\n")
 
-driver.implicitly_wait(5)
-driver.close()
+
+prod_no = int(input("Enter the number of the product you want to buy: "))
+sys('clear')
+print("Opening the product link\n")
+driver.get(items_selected[prod_no-1][4])
+sys('clear')
+print("Opened the product link\n")
+
+
+# driver.implicitly_wait(5)
+# driver.close()
+
+# STILL MINOR ERRORS ARE THERE
