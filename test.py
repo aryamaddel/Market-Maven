@@ -24,7 +24,6 @@ product_ratings = []
 product_ratings_num = []
 product_link = []
 
-sleep(2)
 sys('clear')
 print("Finding all elements\n")
 items = WebDriverWait(driver, 10).until(
@@ -34,11 +33,9 @@ items = WebDriverWait(driver, 10).until(
         )
     )
 )
-sleep(2)
 sys('clear')
 print("Found all elements\n")
 
-sleep(2)
 sys('clear')
 print("Getting product details\n")
 for item in items:
@@ -65,11 +62,9 @@ for item in items:
     product_link.append(item.find_element(
         By.XPATH, './/a').get_attribute('href')
     )
-sleep(2)
 sys('clear')
 print("Got product details\n")
 
-sleep(2)
 sys('clear')
 print("searching for your product\n")
 items_selected = []
@@ -82,7 +77,6 @@ for itemNo, name in enumerate(product_name):
         info.append(product_ratings_num[itemNo])
         info.append(product_link[itemNo])
         items_selected.append(info)
-sleep(2)
 sys('clear')
 print("Found your products\n")
 
