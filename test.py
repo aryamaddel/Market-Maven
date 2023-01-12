@@ -78,6 +78,13 @@ for itemNo, name in enumerate(product_name):
 sys('clear')
 print("Found your products\n")
 
+for item in items_selected:
+    print(f"Name: {item[0]}")
+    print(f"Price: {item[1]}")
+    print(f"Ratings: {item[2]}")
+    print(f"Number of Ratings: {item[3]}")
+    print(f"Link: {item[4]}")
+    print()
 
 driver.implicitly_wait(5)
 driver.close()
