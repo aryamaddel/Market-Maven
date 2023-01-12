@@ -43,7 +43,7 @@ for item in items:
         By.XPATH, './/span[@class="a-size-medium a-color-base a-text-normal"]').text)
     product_asin.append(item.get_attribute('data-asin'))
     product_price.append(item.find_element(
-        By.XPATH, './/span//span[@class="a-price-whole"]').text)
+        By.XPATH, './/a//span//span//span[@class="a-price-whole"]').text)
 
     ratings_box = item.find_elements(
         By.XPATH, './/div[@class="a-row a-size-small"]/span')
