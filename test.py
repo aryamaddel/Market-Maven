@@ -91,7 +91,7 @@ for prod_no, item in enumerate(items_selected):
     print(f"Ratings: {item[2]}")
     print(f"Number of Ratings: {item[3]}")
     print(f"Link: {item[4]}")
-    print()
+    print("\n\n")
 
 driver.implicitly_wait(5)
 driver.close()
