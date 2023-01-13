@@ -101,6 +101,20 @@ driver.get(items_selected[prod_no-1][4])
 sys('clear')
 print("Opened the product link\n")
 
+add_to_cart_button = driver.find_element(By.ID, 'add-to-cart-button')
+buy_now_button = driver.find_element(By.ID, 'buy-now-button')
+
+print("To Add to cart press 1\nTo Buy Now press 2\n")
+choice = int(input("Enter your choice: "))
+sys('clear')
+
+if choice == 1:
+    print("Adding to cart\n")
+    add_to_cart_button.click()
+elif choice == 2:
+    print("Going to checkout")
+    buy_now_button.click()
+
 
 # driver.implicitly_wait(5)
 # driver.close()
