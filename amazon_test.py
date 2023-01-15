@@ -111,6 +111,8 @@ sys('clear')
 if choice == 1:
     print("Adding to cart\n")
     add_to_cart_button.click()
+    cart = driver.find_element(By.XPATH, '//span[@class="a-size-medium-plus a-color-base sw-atc-text a-text-bold"]')
+    print(cart.text)
 elif choice == 2:
     print("Going to checkout")
     buy_now_button.click()
