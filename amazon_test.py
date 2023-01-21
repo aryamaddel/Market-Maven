@@ -2,6 +2,7 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
+# from selenium.common.exceptions import
 from os import system as sys
 
 driver = webdriver.Chrome()
@@ -111,7 +112,8 @@ sys('clear')
 if choice == 1:
     print("Adding to cart\n")
     add_to_cart_button.click()
-    cart = driver.find_element(By.XPATH, '//span[@class="a-size-medium-plus a-color-base sw-atc-text a-text-bold"]')
+    cart = driver.find_element(
+        By.XPATH, '//span[@class="a-size-medium-plus a-color-base sw-atc-text a-text-bold"]')
     print(cart.text)
 elif choice == 2:
     print("Going to checkout")
