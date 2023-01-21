@@ -121,4 +121,4 @@ elif choice == 2:
 # driver.implicitly_wait(5)
 # driver.close()
 
-# STILL MINOR ERRORS ARE THERE
+# STILL ERRORS ARE THERE
