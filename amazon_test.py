@@ -119,8 +119,4 @@ elif choice == 2:
     print("Going to checkout")
     buy_now_button.click()
 
-
-# driver.implicitly_wait(5)
-# driver.close()
-
 # STILL ERRORS ARE THERE
