@@ -2,20 +2,7 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
-# from selenium.common.exceptions import
-from os import system as sys
-
-driver = webdriver.Chrome()
-
-driver.get('https://www.amazon.in')
-
-searchBar = driver.find_element(By.ID, 'twotabsearchtextbox')
-driver.implicitly_wait(5)
-
-sys('clear')
-item_to_be_searched = input("Enter product you want to search: ")
-searchBar.send_keys(item_to_be_searched)
-searchBar.submit()
+from selenium.common.exceptions import NoSuchElementException
 
 
 product_name = []
@@ -25,8 +12,72 @@ product_ratings = []
 product_ratings_num = []
 product_link = []
 
-sys('clear')
-print("Finding all elements\n")
+
+def get_product_name(item):
+    try:
+        name = item.find_element(
+            By.XPATH, './/span[@class="a-size-medium a-color-base a-text-normal"]').text
+        return name
+    except NoSuchElementException:
+        exit("No name found")
+
+
+def get_product_asin(item):
+    try:
+        asin = item.get_attribute('data-asin')
+        return asin
+    except NoSuchElementException:
+        exit("No asin found")
+
+
+def get_price(item):
+    try:
+        price = item.find_element(
+            By.XPATH, './/span[@class="a-price-whole"]').text
+        return price
+    except NoSuchElementException:
+        exit("No price found")
+
+
+def get_ratings(item):
+    try:
+        ratings = item.find_element(
+            By.XPATH, './/div[@class="a-row a-size-small"]/span[1]'
+        ).get_attribute('aria-label')
+        return ratings
+    except NoSuchElementException:
+        exit("No ratings found")
+
+
+def get_ratings_num(item):
+    try:
+        ratings_num = item.find_element(
+            By.XPATH, './/div[@class="a-row a-size-small"]/span[2]'
+        ).get_attribute('aria-label')
+        return ratings_num
+    except NoSuchElementException:
+        exit("No ratings Number found")
+
+
+def get_link(item):
+    try:
+        link = item.find_element(
+            By.XPATH, './/h2/a').get_attribute('href')
+        return link
+    except NoSuchElementException:
+        exit("No link found")
+
+
+driver = webdriver.Chrome()
+driver.get('https://www.amazon.in')
+
+searchBar = driver.find_element(By.ID, 'twotabsearchtextbox')
+driver.implicitly_wait(5)
+item_to_be_searched = input("Enter product you want to search: ")
+searchBar.send_keys(item_to_be_searched)
+searchBar.submit()
+
+
 items = WebDriverWait(driver, 10).until(
     EC.presence_of_all_elements_located(
         (
@@ -34,44 +85,23 @@ items = WebDriverWait(driver, 10).until(
         )
     )
 )
-sys('clear')
-print("Found all elements\n")
 
-sys('clear')
-print("Getting product details\n")
 for item in items:
     print("Getting product name")
-    product_name.append(item.find_element(
-        By.XPATH, './/span[@class="a-size-medium a-color-base a-text-normal"]').text)
+    product_name.append(get_product_name(item))
 
     print("Getting product asin")
-    product_asin.append(item.get_attribute('data-asin'))
+    product_asin.append(get_product_name(item))
 
     print("Getting product price")
-    product_price.append(item.find_element(
-        By.XPATH, './/span[@class="a-price-whole"]').text)
+    product_price.append(get_price(item))
 
     print("Getting product ratings")
-    ratings_box = item.find_elements(
-        By.XPATH, './/div[@class="a-row a-size-small"]/span')
+    product_ratings.append(get_ratings(item))
+    product_ratings_num.append(get_ratings_num(item))
 
-    if ratings_box != []:
-        ratings = ratings_box[0].get_attribute('aria-label')
-        ratings_num = ratings_box[1].get_attribute('aria-label')
-    else:
-        ratings, ratings_num = 0, 0
+    product_link.append(get_link(item))
 
-    product_ratings.append(ratings)
-    product_ratings_num.append(str(ratings_num))
-
-    product_link.append(item.find_element(
-        By.XPATH, './/h2/a').get_attribute('href')
-    )
-sys('clear')
-print("Got product details\n")
-
-sys('clear')
-print("searching for your product\n")
 items_selected = []
 for itemNo, name in enumerate(product_name):
     if item_to_be_searched.lower() in name.lower():
@@ -82,8 +112,7 @@ for itemNo, name in enumerate(product_name):
         info.append(product_ratings_num[itemNo])
         info.append(product_link[itemNo])
         items_selected.append(info)
-sys('clear')
-print("Found your products\n")
+
 
 for prod_no, item in enumerate(items_selected):
     print(f"Number: {prod_no+1}")
@@ -93,30 +122,3 @@ for prod_no, item in enumerate(items_selected):
     print(f"Number of Ratings: {item[3]}")
     print(f"Link: {item[4]}")
     print("\n\n")
-
-
-prod_no = int(input("Enter the number of the product you want to buy: "))
-sys('clear')
-print("Opening the product link\n")
-driver.get(items_selected[prod_no-1][4])
-sys('clear')
-print("Opened the product link\n")
-
-add_to_cart_button = driver.find_element(By.ID, 'add-to-cart-button')
-buy_now_button = driver.find_element(By.ID, 'buy-now-button')
-
-print("To Add to cart press 1\nTo Buy Now press 2\n")
-choice = int(input("Enter your choice: "))
-sys('clear')
-
-if choice == 1:
-    print("Adding to cart\n")
-    add_to_cart_button.click()
-    cart = driver.find_element(
-        By.XPATH, '//span[@class="a-size-medium-plus a-color-base sw-atc-text a-text-bold"]')
-    print(cart.text)
-elif choice == 2:
-    print("Going to checkout")
-    buy_now_button.click()
-
-# STILL ERRORS ARE THERE
