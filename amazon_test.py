@@ -89,7 +89,7 @@ items = WebDriverWait(driver, 10).until(
 for item in items:
     product_name.append(get_product_name(item))
 
-    product_asin.append(get_product_name(item))
+    product_asin.append(get_product_asin(item))
 
     product_price.append(get_price(item))
 
