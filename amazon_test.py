@@ -101,24 +101,3 @@ for item in items:
     product_ratings_num.append(get_ratings_num(item))
 
     product_link.append(get_link(item))
-
-items_selected = []
-for itemNo, name in enumerate(product_name):
-    if item_to_be_searched.lower() in name.lower():
-        info = []
-        info.append(product_name[itemNo])
-        info.append(product_price[itemNo])
-        info.append(product_ratings[itemNo])
-        info.append(product_ratings_num[itemNo])
-        info.append(product_link[itemNo])
-        items_selected.append(info)
-
-
-for prod_no, item in enumerate(items_selected):
-    print(f"Number: {prod_no+1}")
-    print(f"Name: {item[0]}")
-    print(f"Price: {item[1]}")
-    print(f"Ratings: {item[2]}")
-    print(f"Number of Ratings: {item[3]}")
-    print(f"Link: {item[4]}")
-    print("\n\n")
