@@ -98,3 +98,13 @@ for item in items:
     product_ratings_num.append(get_ratings_num(item))
 
     product_link.append(get_link(item))
+
+    NUMBER_OF_PRODUCTS += 1
+
+for i in range(NUMBER_OF_PRODUCTS):
+    print("Product Name: ", product_name[i])
+    print("Product ASIN: ", product_asin[i])
+    print("Product Price: ", product_price[i])
+    print("Product Ratings: ", product_ratings[i])
+    print("Product Ratings Number: ", product_ratings_num[i])
+    print("Product Link: ", product_link[i], "\n\n")
