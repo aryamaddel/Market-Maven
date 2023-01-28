@@ -87,17 +87,14 @@ items = WebDriverWait(driver, 10).until(
 )
 
 for item in items:
-    print("Getting product name")
     product_name.append(get_product_name(item))
 
-    print("Getting product asin")
     product_asin.append(get_product_name(item))
 
-    print("Getting product price")
     product_price.append(get_price(item))
 
-    print("Getting product ratings")
     product_ratings.append(get_ratings(item))
+    
     product_ratings_num.append(get_ratings_num(item))
 
     product_link.append(get_link(item))
