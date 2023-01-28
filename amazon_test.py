@@ -15,9 +15,10 @@ product_link = []
 
 def search_product(driver, product):
     searchBar = driver.find_element(By.ID, 'twotabsearchtextbox')
-    driver.implicitly_wait(5)
     searchBar.send_keys(product)
     searchBar.submit()
+    searchBar = driver.find_element(By.ID, 'twotabsearchtextbox')
+    searchBar.clear()
 
 
 def get_products_on_page(driver):
