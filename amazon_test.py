@@ -56,7 +56,7 @@ def get_ratings_num(item):
         ).get_attribute('aria-label')
         return ratings_num
     except NoSuchElementException:
-        exit("No ratings Number found")
+        return "No ratings Number found"
 
 
 def get_link(item):
