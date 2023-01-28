@@ -13,6 +13,41 @@ product_ratings_num = []
 product_link = []
 
 
+def search_product(driver, product):
+    searchBar = driver.find_element(By.ID, 'twotabsearchtextbox')
+    driver.implicitly_wait(5)
+    searchBar.send_keys(product)
+    searchBar.submit()
+
+
+def get_products_on_page(driver):
+    global NUMBER_OF_PRODUCTS
+
+    items = WebDriverWait(driver, 10).until(
+        EC.presence_of_all_elements_located(
+            (
+                By.XPATH, '//div[@data-component-type="s-search-result"]'
+            )
+        )
+    )
+
+    for item in items:
+        product_name.append(get_product_name(item))
+
+        product_asin.append(get_product_asin(item))
+
+        product_price.append(get_price(item))
+
+        product_ratings.append(get_ratings(item))
+
+        product_ratings_num.append(get_ratings_num(item))
+
+        product_link.append(get_link(item))
+
+        NUMBER_OF_PRODUCTS += 1
+        print(NUMBER_OF_PRODUCTS)
+
+
 def get_product_name(item):
     try:
         name = item.find_element(
@@ -71,36 +106,8 @@ def get_link(item):
 driver = webdriver.Chrome()
 driver.get('https://www.amazon.in')
 
-searchBar = driver.find_element(By.ID, 'twotabsearchtextbox')
-driver.implicitly_wait(5)
-item_to_be_searched = input("Enter product you want to search: ")
-searchBar.send_keys(item_to_be_searched)
-searchBar.submit()
-
-
-items = WebDriverWait(driver, 10).until(
-    EC.presence_of_all_elements_located(
-        (
-            By.XPATH, '//div[@data-component-type="s-search-result"]'
-        )
-    )
-)
-
-for item in items:
-    product_name.append(get_product_name(item))
-
-    product_asin.append(get_product_asin(item))
-
-    product_price.append(get_price(item))
-
-    product_ratings.append(get_ratings(item))
-
-    product_ratings_num.append(get_ratings_num(item))
-
-    product_link.append(get_link(item))
-
-    NUMBER_OF_PRODUCTS += 1
-    print(NUMBER_OF_PRODUCTS)
+search_product(driver=driver, product="mobiles")
+get_products_on_page(driver=driver)
 
 for i in range(NUMBER_OF_PRODUCTS):
     print("Product Name: ", product_name[i])
