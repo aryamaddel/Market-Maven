@@ -100,6 +100,7 @@ for item in items:
     product_link.append(get_link(item))
 
     NUMBER_OF_PRODUCTS += 1
+    print(NUMBER_OF_PRODUCTS)
 
 for i in range(NUMBER_OF_PRODUCTS):
     print("Product Name: ", product_name[i])
