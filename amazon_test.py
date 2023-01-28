@@ -16,7 +16,7 @@ product_link = []
 def get_product_name(item):
     try:
         name = item.find_element(
-            By.XPATH, './/span[@class="a-size-medium a-color-base a-text-normal"]').text
+            By.XPATH, './/span[@class="a-size-medium a-color-base a-text-normal" or @class="a-size-base-plus a-color-base a-text-normal"]').text
         return name
     except NoSuchElementException:
         exit("No name found")
