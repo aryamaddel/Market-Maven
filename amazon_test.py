@@ -36,7 +36,7 @@ def get_price(item):
             By.XPATH, './/span[@class="a-price-whole"]').text
         return price
     except NoSuchElementException:
-        exit("No price found")
+        return "No price found"
 
 
 def get_ratings(item):
