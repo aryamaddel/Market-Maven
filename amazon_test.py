@@ -94,7 +94,7 @@ for item in items:
     product_price.append(get_price(item))
 
     product_ratings.append(get_ratings(item))
-    
+
     product_ratings_num.append(get_ratings_num(item))
 
     product_link.append(get_link(item))
