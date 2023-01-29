@@ -4,14 +4,6 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.common.exceptions import NoSuchElementException
 
-NUMBER_OF_PRODUCTS = 0
-product_name = []
-product_asin = []
-product_price = []
-product_ratings = []
-product_ratings_num = []
-product_link = []
-
 
 def search_product(driver, product):
     searchBar = driver.find_element(By.ID, 'twotabsearchtextbox')
