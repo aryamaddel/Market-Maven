@@ -111,13 +111,6 @@ def get_link(item):
 def make_driver():
     return driver
 
-search_product(driver=driver, product="mobiles")
-get_products_on_page(driver=driver)
 
-for i in range(NUMBER_OF_PRODUCTS):
-    print("Product Name: ", product_name[i])
-    print("Product ASIN: ", product_asin[i])
-    print("Product Price: ", product_price[i])
-    print("Product Ratings: ", product_ratings[i])
-    print("Product Ratings Number: ", product_ratings_num[i])
-    print("Product Link: ", product_link[i], "\n\n")
+driver = webdriver.Chrome()
+driver.get('https://www.amazon.in')
