@@ -14,7 +14,14 @@ def search_product(driver, product):
 
 
 def get_products_on_page(driver):
-    global NUMBER_OF_PRODUCTS
+
+    NUMBER_OF_PRODUCTS = 0
+    product_name = []
+    product_asin = []
+    product_price = []
+    product_ratings = []
+    product_ratings_num = []
+    product_link = []
 
     items = WebDriverWait(driver, 10).until(
         EC.presence_of_all_elements_located(
