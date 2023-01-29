@@ -108,8 +108,8 @@ def get_link(item):
         exit("No link found")
 
 
-driver = webdriver.Chrome()
-driver.get('https://www.amazon.in')
+def make_driver():
+    return driver
 
 search_product(driver=driver, product="mobiles")
 get_products_on_page(driver=driver)
