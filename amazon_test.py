@@ -47,7 +47,7 @@ def get_products_on_page(driver):
         NUMBER_OF_PRODUCTS += 1
         print(NUMBER_OF_PRODUCTS)
 
-    products_list= list(zip(product_name, product_asin, product_price, product_ratings, product_ratings_num, product_link))
+    products_list= sorted(list(zip(product_name, product_asin, product_price, product_ratings, product_ratings_num, product_link)))
     return products_list
 
     
